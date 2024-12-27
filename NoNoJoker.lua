@@ -21,8 +21,8 @@ SMODS.Joker {
     }
   },
   config = {extra = { mults = 0, mult_gain = 9 } },
-  rarity = 1, -- ! should change later
-  cost = 1,
+  rarity = 3, -- ! should change later
+  cost = 11,
   unlocked = true,
   discovered = true,
   atlas = 'NoNoJoker',
