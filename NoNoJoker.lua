@@ -5,6 +5,15 @@ SMODS.Atlas {
   py = 95
 }
 
+local function contains(table_, value)
+  for _, v in pairs(table_) do
+      if v == value then
+          return true
+      end
+  end
+  return false
+end
+
 SMODS.Joker {
   key = 'pair-tower',
   loc_txt = 
@@ -30,30 +39,32 @@ SMODS.Joker {
   loc_vars = function(self, info_queue, card)
     return { vars = { card.ability.extra.mults, card.ability.extra.mult_gain } } 
   end,
-  calculate = function(self, card, context)
-    local destroyed_cards = {}
-    
+  calculate = function(self, card, context)    
     if context.joker_main then
       return {
-        mult_mod = card.ability.extra.mults,
+        mult = card.ability.extra.mults,
         message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mults } }
       }
     end
-
-    -- if context.before and next(context.poker_hands['Pair']) and not context.blueprint then
-    if context.before and context.scoring_name == 'Pair' and not context.blueprint then
-      card.ability.extra.mults = card.ability.extra.mults + card.ability.extra.mult_gain -- add +Mult to current Mults
-      destroyed_cards[#destroyed_cards+1] = context.other_card
-
-      return {
-        message = 'Upgraded!',
-        colour = G.C.MULT,
-        card = card
-      }
-    end
-
-    if context.destroying_card and not context.blueprint and not context.destroying_card.ability.eternal then
-        return true
+    if context.before and not context.blueprint then 
+      card.ability.extra.tower = {}
+      if context.scoring_name == 'Pair' then   
+        card.ability.extra.mults = card.ability.extra.mults + card.ability.extra.mult_gain -- add +Mult to current Mults
+        for i=1, #context.scoring_hand do
+          if not context.scoring_hand[i].debuff then
+            card.ability.extra.tower[#card.ability.extra.tower + 1] = context.scoring_hand[i]
+          end
+        end
+        return {
+          message = 'Hit!',
+          colour = G.C.MULT,
+          card = card
+        }
+      end
+    elseif context.destroying_card and not context.blueprint then
+      return contains(card.ability.extra.tower, context.destroying_card)
+    elseif context.after and not context.blueprint then
+      card.ability.extra.tower = nil
     end
   end
 }
