@@ -1,0 +1,14 @@
+{
+    "id": "nonojoker",
+    "name": "NoNoJoker",
+    "display_name": "No No Joker",
+    "author": ["DaisyDB"],
+    "description": "This mod adds new Joker cards, some of which may be sensitive or controversial. Enable with discretionx.",
+    "prefix": "NoNoJoker",
+    "main_file": "NoNoJoker.lua",
+    "badge_colour": "80192D",
+    "version": "1.0.0",
+    "dependencies": [
+        "Steamodded (>=1.0.0~ALPHA-1225a)"
+    ]
+}
