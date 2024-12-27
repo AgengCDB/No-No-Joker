@@ -3,7 +3,7 @@
     "name": "NoNoJoker",
     "display_name": "No No Joker",
     "author": ["DaisyDB"],
-    "description": "This mod adds new Joker cards, some of which may be sensitive or controversial. Enable with discretionx.",
+    "description": "This mod adds new Joker cards, some of which may be sensitive or controversial. Enable with discretion.",
     "prefix": "NoNoJoker",
     "main_file": "NoNoJoker.lua",
     "badge_colour": "80192D",
