@@ -30,7 +30,7 @@ SMODS.Joker {
     }
   },
   config = {extra = { mults = 0, mult_gain = 9 } },
-  rarity = 3, -- ! should change later
+  rarity = 3,
   cost = 11,
   unlocked = true,
   discovered = true,
@@ -43,26 +43,27 @@ SMODS.Joker {
     if context.joker_main then
       return {
         mult = card.ability.extra.mults,
-        message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mults } }
+        message = localize { type = 'variable', key = 'a_mult', vars = { card.ability.extra.mults } },
+        colour = G.C.MULT -- Mult colour
       }
     end
     if context.before and not context.blueprint then 
-      card.ability.extra.tower = {}
+      card.ability.extra.tower = {} -- played poker cards
       if context.scoring_name == 'Pair' then   
         card.ability.extra.mults = card.ability.extra.mults + card.ability.extra.mult_gain -- add +Mult to current Mults
-        for i=1, #context.scoring_hand do
-          if not context.scoring_hand[i].debuff then
-            card.ability.extra.tower[#card.ability.extra.tower + 1] = context.scoring_hand[i]
+        for i=1, #context.scoring_hand do -- loop through scoring hand
+          if not context.scoring_hand[i].debuff then -- only add non-debuff cards
+            card.ability.extra.tower[#card.ability.extra.tower + 1] = context.scoring_hand[i] -- add card to tower
           end
         end
         return {
-          message = 'Hit!',
-          colour = G.C.MULT,
+          message = 'Upgrade!',
+          colour = G.C.MULT, 
           card = card
         }
       end
     elseif context.destroying_card and not context.blueprint then
-      return contains(card.ability.extra.tower, context.destroying_card)
+      return contains(card.ability.extra.tower, context.destroying_card) -- Both tower (cards) is destroyed
     elseif context.after and not context.blueprint then
       card.ability.extra.tower = nil
     end
