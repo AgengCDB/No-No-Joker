@@ -68,4 +68,4 @@ SMODS.Joker {
       card.ability.extra.tower = nil
     end
   end
-} -- Meong
+}
