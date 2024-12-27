@@ -5,4 +5,4 @@ This mod adds several new Joker cards to the game. Some content may be considere
 
 | Card Name     | Rarity | Cost | Description                                     |
 |---------------|--------|------|-------------------------------------------------|
-| **Pair Tower** | Rare   | 11   | Gains <span style="color:red;">+9 Mult</span> if played hand is a <span style="color:yellow;">Pair</span>. Destroys the played hand. *(Currently +0 Mult)* |
+| **Pair Tower** | Rare   | 11   | Gains <code style="color : red">+9 Mult</code> if played hand is a <code style="color : Yellow">Pair</code>. Destroys the played hand. *(Currently <code style="color : red">+0 Mult</code>)* |
