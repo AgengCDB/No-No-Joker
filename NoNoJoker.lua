@@ -69,4 +69,3 @@ SMODS.Joker {
     end
   end
 } 
--- end of Pair Tower
